@@ -37,6 +37,7 @@
           <th>Teléfono</th>
           <th>Contrato</th>
           <th>Dirección</th>
+          <th>C.V</th>
         </tr>
       </thead>
       <tbody>
@@ -46,7 +47,7 @@
   </div>
 
   <!-- Modal Body -->
-  <div class="modal fade" id="modal-estudiante" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal fade" id="modal-colaboradores" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header bg-secondary text-light">
@@ -99,23 +100,16 @@
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="escuela" class="form-label">Escuela:</label>
-                <select name="escuela" id="escuela" class="form-select form-select-sm">
-                  <option value="">Seleccione</option>
-                </select>
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control form-control-sm" id="direccion">
               </div>
               <div class="mb-3 col-md-6">
-                <label for="carrera" class="form-label">Carreras:</label>
-                <select name="carrera" id="carrera" class="form-select form-select-sm">
-                  <option value="">Seleccione</option>
-                </select>
+                <label for="cv">Curriculum Vitae:</label>
+                <input type="file" id="cv" accept=".pdf" class="form-control form-control-sm">
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="fotografia">Fotografía:</label>
-              <input type="file" id="fotografia" accept=".jpg" class="form-control form-control-sm">
-            </div>
+            
           </form>
 
         </div>
@@ -134,6 +128,53 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+
+  <script>
+    $(document).ready(function() {
+
+      function obtenerSedes(){
+        $.ajax({
+          url: '../controllers/sede.controller.php',
+          type: 'POST',
+          data: {operacion: 'listar'},
+          dataType: 'text',
+          success: function(result){
+            $("#sede").html(result);
+          }
+        });
+      }
+    });
+
+    function registrarColaboradores(){
+        //Enviaremos los datos dentro de un OBJETO
+        var formData = new FormData();
+
+        formData.append("operacion", "registrar");
+        formData.append("apellidos", $("#apellidos").val());
+        formData.append("nombres", $("#nombres").val());
+        formData.append("cargo", $("#cargo").val());
+        formData.append("idsede", $("#sede").val());
+        formData.append("telefono", $("#telefono").val());
+        formData.append("direccion", $("#direccion").val());
+        formData.append("cv", $("#cv")[0].files[0]);
+
+        $.ajax({
+          url: '../controllers/colaboradores.controller.php',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          cache: false,
+          success: function(){
+            $("#formulario-colaboradores")[0].reset();
+            $("#modal-colaboradores").modal("hide");
+            alert("Guardado correctamente");
+          }
+        });
+      }
+  </script>
+
+
 </body>
 
 </html>
