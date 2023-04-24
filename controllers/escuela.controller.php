@@ -8,7 +8,7 @@ if (isset($_POST['operacion'])){
 
   if ($_POST['operacion'] == 'listar'){
 
-    $data = $escuela->listarEscuelas();
+    $data = $escuela->listarEscuela();
 
     if ($data){
       echo "<option value='' selected>Seleccione</option>";

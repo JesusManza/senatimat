@@ -63,8 +63,7 @@ if (isset($_POST['operacion'])){
             <td>{$registro['fechanacimiento']}</td>
             <td>{$registro['carrera']}</td>
             <td>
-              <a href='#' class='btn btn-sm btn-danger'><i class='bi bi-trash3'></i></a>
-              <a href='#' class='btn btn-sm btn-info'><i class='bi bi-pencil-fill'></i></a>";
+              <a href='#' class='btn btn-sm btn-danger elmiminar'><i class='bi bi-trash3'></i></a>";
         
         //La segunda parte a RENDERIZAR, es el botón VER FOTOGRAFÍA
         if ($registro['fotografia'] == ''){

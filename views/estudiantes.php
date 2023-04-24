@@ -193,6 +193,8 @@
             $("#formulario-estudiantes")[0].reset();
             $("#modal-estudiante").modal("hide");
             alert("Guardado correctamente");
+            mostrarEstudiantes();
+
           }
         });
       }
@@ -258,7 +260,35 @@
       //Funciones de carga automática
       mostrarEstudiantes();
 
+      function eliminarCurso(){
+        console.log("Eliminando...")
+      }
+      //Evento
+      $('#guardar-curso').click(registrarcurso);
+      //Al pulsar click sobre el botón rojo eliminar el registro
+      //Detectaremos eventos de los objetos creados de manera asincrona en...
+      $("#tabla-estudiante tbody").on("click", ".eliminar", function (){
+        const idestudianteEliminar = $(this).data("idestudiante");
+        if (confirm("¿Está seguro de proceder?")){
+          $.ajax({
+            url:      '../controllers/curso.controller.php',
+            type:     'POST',
+            data: {
+              operacion   :  'eliminar',
+              idestudiante     :  idestudianteEliminar
+            },
+            success: function(result){
+              if (result == ""){
+                mostrarCursos();
+              }
+            }
+          })
+        }
+      });
+
     });
+
+    
   </script>
 
 </body>

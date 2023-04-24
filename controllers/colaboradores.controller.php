@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/colaboradores.php'
+require_once '../models/colaboradores.php';
 
 if (isset($_POST['operacion'])){
 
@@ -13,7 +13,7 @@ if (isset($_POST['operacion'])){
     $datosGuardar = [
       "apellidos"     => $_POST['apellidos'],
       "nombres"       => $_POST['nombres'],
-      "cargo"         => $_POST['cargo'],
+      "idcargo"       => $_POST['idcargo'],
       "idsede"        => $_POST['idsede'],
       "telefono"      => $_POST['telefono'],
       "contrato"      => $_POST['contrato'],
@@ -21,7 +21,7 @@ if (isset($_POST['operacion'])){
       "cv"            => ''
     ];
 
-    //Vamos a verificar si la vista nos envió una FOTOGRAFIA
+    //Vamos a verificar si la vista nos envió un archivo PDF
     if (isset($_FILES['cv'])){
 
       $rutaDestino = '../views/img/fotografias/'; //Carpeta
@@ -29,7 +29,7 @@ if (isset($_POST['operacion'])){
       $nombreArchivo = sha1($fechaActual) . ".pdf";
       $rutaDestino .= $nombreArchivo;
 
-      //Guardamos la fotografía en el servidor
+      //Guardamos la archivo en el servidor
       if (move_uploaded_file($_FILES['cv']['tmp_name'], $rutaDestino)){
         $datosGuardar['cv'] = $nombreArchivo;
       }
@@ -59,12 +59,12 @@ if (isset($_POST['operacion'])){
             <td>{$registro['apellidos']}</td>
             <td>{$registro['nombres']}</td>
             <td>{$registro['cargo']}</td>
+            <td>{$registro['sede']}</td>
             <td>{$registro['telefono']}</td>
-            <td>{$registro['contrato']}</td>
+            <td>{$registro['tipocontrato']}</td>
             <td>{$registro['direccion']}</td>
             <td>
-              <a href='#' class='btn btn-sm btn-danger'><i class='bi bi-trash3'></i></a>
-              <a href='#' class='btn btn-sm btn-info'><i class='bi bi-pencil-fill'></i></a>";
+              <a href='#' class='btn btn-sm btn-danger eliminar'><i class='bi bi-trash3'></i></a>";
         
         //La segunda parte a RENDERIZAR, es el botón VER FOTOGRAFÍA
         if ($registro['cv'] == ''){

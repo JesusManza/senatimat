@@ -19,7 +19,7 @@ class Colaboradores extends Conexion{
         array(
           $datos['apellidos'], 
           $datos['nombres'], 
-          $datos['cargo'],
+          $datos['idcargo'],
           $datos['idsede'],
           $datos['telefono'],
           $datos['contrato'],
@@ -33,9 +33,9 @@ class Colaboradores extends Conexion{
     }
   }
 
-  public function listarcolaboradores(){
+  public function listarColaboradores(){
     try{
-      $consulta = $this->accesoBD->prepare("CALL spu_colaboradores_registrar()");
+      $consulta = $this->accesoBD->prepare("CALL spu_colaboradores_listar()");
       $consulta->execute();
 
       return $consulta->fetchAll(PDO::FETCH_ASSOC);

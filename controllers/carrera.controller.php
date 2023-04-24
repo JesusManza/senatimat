@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/Carrera.php';
+require_once '../models/Carreras.php';
 
 if (isset($_POST['operacion'])){
 

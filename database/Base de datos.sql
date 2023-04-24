@@ -24,8 +24,8 @@ INSERT INTO escuelas (escuela) VALUES
 CREATE TABLE carreras
 (
 	idcarrera 		INT AUTO_INCREMENT PRIMARY KEY,
-	idescuela 		INT 			NOT NULL,
-	carrera 			VARCHAR(100)NOT NULL,
+	idescuela 		INT 		NOT NULL,
+	carrera 		VARCHAR(100)	NOT NULL,
 	CONSTRAINT fk_idescuela_car FOREIGN KEY (idescuela) REFERENCES escuelas (idescuela),
 	CONSTRAINT uk_carrera_car UNIQUE (carrera)
 )ENGINE = INNODB;
@@ -63,17 +63,17 @@ SELECT * FROM sedes ORDER BY 1;
 CREATE TABLE estudiantes
 (
 	idestudiante 		INT AUTO_INCREMENT PRIMARY KEY,
-	apellidos			VARCHAR(40)		NOT NULL,
-	nombres 				VARCHAR(40)		NOT NULL,
+	apellidos		VARCHAR(40)		NOT NULL,
+	nombres 		VARCHAR(40)		NOT NULL,
 	tipodocumento 		CHAR(1)			NOT NULL DEFAULT 'D',
 	nrodocumento		CHAR(8)			NOT NULL,
-	fechanacimiento	DATE 				NOT NULL,
-	idcarrera 			INT 				NOT NULL,
-	idsede 				INT 				NOT NULL,
-	fotografia 			VARCHAR(100)	NULL,
+	fechanacimiento		DATE 			NOT NULL,
+	idcarrera 		INT 			NOT NULL,
+	idsede 			INT 			NOT NULL,
+	fotografia 		VARCHAR(100)		NULL,
 	fecharegistro		DATETIME 		NOT NULL DEFAULT NOW(),
 	fechaupdate 		DATETIME 		NULL,
-	estado 				CHAR(1)			NOT NULL DEFAULT '1',
+	estado 			CHAR(1)			NOT NULL DEFAULT '1',
 	CONSTRAINT uk_nrodocumento_est UNIQUE (tipodocumento, nrodocumento),
 	CONSTRAINT fk_idcarrera_est FOREIGN KEY (idcarrera) REFERENCES carreras (idcarrera),
 	CONSTRAINT fk_idsede_est FOREIGN KEY (idsede) REFERENCES sedes (idsede)
@@ -90,29 +90,28 @@ SELECT * FROM estudiantes;
 
 -- Quinta tabla CARGO
 
-DROP TABLE colaboradores
 
 CREATE TABLE cargos
 (
-	idcargo 			INT AUTO_INCREMENT PRIMARY KEY,
+	idcargo 		INT AUTO_INCREMENT PRIMARY KEY,
 	cargo 			VARCHAR(80)			NOT NULL
 	
 )ENGINE = INNODB;
 
 CREATE TABLE colaboradores
 (
-	idcolaborador INT AUTO_INCREMENT PRIMARY KEY,
-	apellidos 		VARCHAR(40)		NOT NULL,
-	nombres 			VARCHAR(40)		NOT NULL,
-	idcargo			INT 				NOT NULL,
-	idsede			INT 				NOT NULL,
-	telefono			CHAR(9)			NOT NULL,
-	tipocontrato	CHAR(1)			NOT NULL,
-	cv					VARCHAR(100)	NULL,
+	idcolaborador 		INT AUTO_INCREMENT PRIMARY KEY,
+	apellidos 		VARCHAR(40)	NOT NULL,
+	nombres 		VARCHAR(40)	NOT NULL,
+	idcargo			INT 		NOT NULL,
+	idsede			INT 		NOT NULL,
+	telefono		CHAR(9)		NOT NULL,
+	tipocontrato		CHAR(1)		NOT NULL,
+	cv			VARCHAR(100)	NULL,
 	direccion		VARCHAR (50) 	NOT NULL,
-	fecharegistro	DATETIME			NOT NULL DEFAULT NOW(),
-	fechaupdate		DATETIME			NULL,
-	estado			CHAR(1)			NOT NULL DEFAULT '1',
+	fecharegistro		DATETIME	NOT NULL DEFAULT NOW(),
+	fechaupdate		DATETIME	NULL,
+	estado			CHAR(1)		NOT NULL DEFAULT '1',
 	CONSTRAINT fk_idcargo_col FOREIGN KEY (idcargo) REFERENCES cargos (idcargo),
 	CONSTRAINT fk_sede_col FOREIGN KEY (idsede) REFERENCES sedes (idsede)
 )ENGINE= INNODB;

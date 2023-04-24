@@ -21,7 +21,7 @@
 <body>
 
   <!-- Modal trigger button -->
-  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal-estudiante">
+  <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal-colaboradores">
     Registrar
   </button>
 
@@ -37,7 +37,7 @@
           <th>Teléfono</th>
           <th>Contrato</th>
           <th>Dirección</th>
-          <th>C.V</th>
+          <th>Operaciones</th>
         </tr>
       </thead>
       <tbody>
@@ -54,9 +54,8 @@
           <h5 class="modal-title" id="modalTitleId">Registro de Colaboradores</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          
-          <form action="" autocomplete="off" id="formulario-estudiantes" enctype="multipart/form-data">
+        <div class="modal-body">  
+          <form action="" autocomplete="off" id="formulario-colaboradores" enctype="multipart/form-data">
             <div class="row">
               <div class="mb-3 col-md-6">
                 <label for="apellidos" class="form-label">Apellidos:</label>
@@ -69,14 +68,11 @@
             </div>
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="cargos" class="form-label">Cargo:</label>
-                <select name="cargos" id="cargos" class="form-select form-select-sm">
+                <label for="cargo" class="form-label">Cargo:</label>
+                <select name="cargo" id="cargo" class="form-select form-select-sm">
                   <option value="">Seleccione</option>
-                  <!-- <option value="D">DNI</option>
-                       <option value="C">Carnet de Extranjería</option> -->
                 </select>
               </div>
-              
               <div class="mb-3 col-md-6">
                 <label for="sede" class="form-label">Sede:</label>
                 <select name="sede" id="sede" class="form-select form-select-sm">
@@ -115,7 +111,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-sm btn-primary" id="guardar-estudiante">Guardar</button>
+          <button type="button" class="btn btn-sm btn-primary" id="guardar-colaboradores">Guardar</button>
         </div>
       </div>
     </div>
@@ -143,7 +139,18 @@
           }
         });
       }
-    });
+
+      function obtenerCargo(){
+        $.ajax({
+          url: '../controllers/cargo.controller.php',
+          type: 'POST',
+          data: {operacion: 'listar'},
+          dataType: 'text',
+          success: function(result){
+            $("#cargo").html(result);
+          }
+        });
+      }
 
     function registrarColaboradores(){
         //Enviaremos los datos dentro de un OBJETO
@@ -172,6 +179,46 @@
           }
         });
       }
+
+      function preguntarRegistro(){
+        Swal.fire({
+          icon: 'question',
+          title: 'Registro',
+          text: '¿Está seguro de registrar al colaborador?',
+          footer: 'Desarrollado con PHP',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#3498DB',
+          showCancelButton: true,
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          //Identificando acción del usuario
+          if (result.isConfirmed){
+            registrarColaboradores();
+          }
+        });
+      }
+
+      function mostrarColaboradores(){
+        $.ajax({
+          url: '../controllers/colaboradores.controller.php',
+          type: 'POST',
+          data: {operacion: 'listar'},
+          dataType: 'text',
+          success: function(result){
+            $("#tabla-colaboradores tbody").html(result);
+          }
+        });
+      }
+      
+
+      $("#guardar-colaboradores").click(preguntarRegistro);
+
+      //Funciones de carga automática
+      mostrarColaboradores();
+      obtenerSedes();
+      obtenerCargo();
+
+  });
   </script>
 
 

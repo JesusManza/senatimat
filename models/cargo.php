@@ -2,7 +2,7 @@
 
 require_once 'Conexion.php';
 
-class Escuela extends Conexion{
+class Cargo extends Conexion{
 
   private $accesoBD;
 
@@ -10,9 +10,9 @@ class Escuela extends Conexion{
     $this->accesoBD = parent::getConexion();
   }
 
-  public function listarEscuela(){
+  public function listarCargo(){
     try{
-      $consulta = $this->accesoBD->prepare("CALL spu_escuelas_listar()");
+      $consulta = $this->accesoBD->prepare("CALL spu_cargos_listar()");
       $consulta->execute();
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }

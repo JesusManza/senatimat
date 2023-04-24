@@ -27,10 +27,10 @@ CREATE PROCEDURE spu_estudiantes_registrar
 	IN _nombres 			VARCHAR(40),
 	IN _tipodocumento		CHAR(1),
 	IN _nrodocumento		CHAR(8),
-	IN _fechanacimiento	DATE,
+	IN _fechanacimiento		DATE,
 	IN _idcarrera 			INT,
-	IN _idsede 				INT,
-	IN _fotografia 		VARCHAR(100)
+	IN _idsede 			INT,
+	IN _fotografia 			VARCHAR(100)
 )
 BEGIN
 	-- Validar el contenido de _fotografia
@@ -103,10 +103,10 @@ CREATE PROCEDURE spu_colaboradores_registrar
 	IN _apellidos 			VARCHAR(40),
 	IN _nombres 			VARCHAR(40),
 	IN _idcargo 			INT,
-	IN _idsede 				INT,
+	IN _idsede 			INT,
 	IN _telefono			CHAR(9),
 	IN _tipocontrato		CHAR(1),
-	IN _cv					VARCHAR (100),
+	IN _cv				VARCHAR (100),
 	IN _direccion			VARCHAR (50)
 )
 BEGIN
@@ -117,10 +117,16 @@ BEGIN
 
 	INSERT INTO colaboradores
 	(apellidos, nombres, idcargo, idsede, telefono, tipocontrato, cv, direccion) VALUES
-	(_apellidos, _nombres, _idcargo, _idsede, _idsede, _tipocontrato, _cv, _direccion);
+	(_apellidos, _nombres, _idcargo, _idsede, _telefono, _tipocontrato, _cv, _direccion);
 END $$
 
 CALL spu_colaboradores_registrar('Tintin', 'Jacinto', 4, 3, '978456813', 'P','', 'Pedro suarez 01');
 
+DELIMITER $$
+CREATE PROCEDURE spu_cargos_listar()
+BEGIN
+	SELECT * FROM cargos ORDER BY 2;
+END $$
 
+CALL spu_cargos_listar
 
