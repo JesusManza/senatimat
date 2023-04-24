@@ -12,49 +12,45 @@
 
 
 </head>
-<body class="bg-info d-flex justify-contend-center aling-items-center vh-100">
-  <h2>Bienvenido al Sistema</h2>
-  <div class="bg-white p-5 rounded-5">
-    <div>
+
+<body class="bg-info d-flex justify-content-center align-items-center vh-100">
+  
+  <div class="bg-white p-5 rounded-5 text=secondary" style="width:25rem">
+    <div class="d-flex justify-content-center">
       <img src="./views/img/fotografia/logito.png" alt="login" style="height: 7rem">
       
     </div>
 
-    <div>Login</div>
-    <div>
-      <div>
-        <img src="" alt="">
+    <div class="text-center fs-1 fw-bold">Login</div>
+    <div class="input-group mt-4">
+      <div class="input-group-text bg-info">
+        <img src="./views/img/fotografia/login.png" alt="login" style="height:1rem">
       </div>
-      <input type="text" placeholder= "username">
+      <input class="form-control" type="text" placeholder= "username">
     </div>
-    <div>
-      <div>
-        <img src="" alt="">
+    <div class="input-group mt-1">
+      <div class="input-group-text bg-info">
+        <img src="./views/img/fotografia/key.png" alt="key" style="height:1rem">
       </div>
-      <input type="password" placeholder= "password">
+      <input class="form-control" type="password" placeholder= "password">
     </div>
-    <div>
-      <div>
-        <input type="checkbox">
-        <div>remember me</div>
+    <div class="d-flex justify-content-around mt-1">
+      <div class="d-flex align-items-center gap:1">
+        <input class="form-check-input" type="checkbox">
+        <div class="pt-1" style="font-size:0.9rem">remember me</div>
       </div>
-      <div>
-        <a href="">Forgot your Password</a>
+      <div class="pt:1">
+        <a href="" class="text-decoration-none text-info fw-semibold fst-italic font-size:0.9rem" style="font-size:0.9rem">Forgot your Password</a>
       </div>
     </div>
-    <div>Login</div>
-    <div>
-      <div>don´t have a account?</div>
-      <a href="">Registrar</a>
+    <div class="btn btn-info text-white w-100 mt-4 fw- shadow-sm">
+    <a href="views/estudiantes.php">Iniciar Sesión</a>
+
     </div>
-    <div>or</div>
-    <div>
-      <img src="./views/img/fotografia/google.png"alt="google-icon" style="height: 1.6rem">
-      <div>Continue con Google</div>
+   
     </div>
   </div>
 
-  <a href="views/estudiantes.php">Acceder al sistema</a>
 
   
 </body>
