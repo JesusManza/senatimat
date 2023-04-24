@@ -45,7 +45,9 @@
       </tbody>
     </table>
   </div>
-  
+    
+  <a class="btn btn-info" href="./colaboradores.php">Colaboradores</a>
+
   <!-- Modal Body -->
   <div class="modal fade" id="modal-estudiante" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">

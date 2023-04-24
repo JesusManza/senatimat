@@ -22,7 +22,7 @@
 
   <!-- Modal trigger button -->
   <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modal-colaboradores">
-    Registrar
+    Registrar Colaboradores
   </button>
 
   <div class="container">
@@ -45,6 +45,9 @@
       </tbody>
     </table>
   </div>
+
+  <a class="btn btn-info" href="./estudiantes.php">Regresar a Estudiantes</a>
+
 
   <!-- Modal Body -->
   <div class="modal fade" id="modal-colaboradores" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
